@@ -1,6 +1,5 @@
-<div align='center'>
-  ![Logo](https://raw.githubusercontent.com/Unbuttun/2048-typescript-cli/master/public/2048_logo.png)
-</div>
+![Logo](https://raw.githubusercontent.com/Unbuttun/2048-typescript-cli/master/public/2048_logo.png)
+
 
 
 
