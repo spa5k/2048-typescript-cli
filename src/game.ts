@@ -115,7 +115,7 @@ export class Game {
   }
 
   // Draw the info board
-  drawBoard(): string {
+  drawInfoBoard(): string {
     const board = [
       ["Score", this.score],
       ["Steps", this.step],
@@ -194,8 +194,11 @@ export class Game {
       this.changeStepCount();
       this.updateScoreInfo();
     }
-    console.log(chalk.yellow(this.drawGrid()));
-    console.log(chalk.cyan(this.drawBoard()) + "\n");
+    // This draws the main play board
+    console.log(chalk.yellow(this.drawGrid()) + "\n");
+    // This draws the INFO board
+    console.log(chalk.cyan(this.drawInfoBoard()) + "\n");
+    // This draw the help content
     console.log(chalk.bold(this.drawHelp()));
 
     if (this.hasChange) {
