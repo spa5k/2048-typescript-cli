@@ -40,7 +40,7 @@ ReadLine.input.on("data", (chunk: "77") => {
   const direction: "up" | "down" | "left" | "right" = keyMap[chunk.toString("hex")];
   if (direction) {
     process.stdout.write("\u001B[2J\u001B[0;0f");
-    game.moveIt(direction);
+    game.moveTheTile(direction);
   }
 });
 

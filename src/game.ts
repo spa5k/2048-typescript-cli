@@ -14,7 +14,9 @@ export class Game {
   isWon: boolean;
   // Type of Grid for grid
   grid: Grid;
+  // Score from the game last played
   lastScore: number;
+  // Highest score
   higestScore: number;
 
   constructor(lastScore = 0, highestScore = 0) {
@@ -33,7 +35,7 @@ export class Game {
     for (let index = 0; index < initialNumbers; index++) {
       this.randomNumberGenerator();
     }
-    this.action();
+    this.checkEverything();
   }
 
   // Draw the grid
@@ -42,7 +44,7 @@ export class Game {
   }
 
   // Moving the direction
-  moveIt(direction: "up" | "down" | "left" | "right"): void {
+  moveTheTile(direction: "up" | "down" | "left" | "right"): void {
     switch (direction) {
       case "up":
         this.tileUp();
@@ -51,10 +53,10 @@ export class Game {
         this.tileDown();
         break;
       case "left":
-        this.rangeTilesLeft();
+        this.tileLeft();
         break;
       case "right":
-        this.tileVal();
+        this.tileRight();
         break;
       default:
         break;
@@ -75,7 +77,7 @@ export class Game {
       }
     }
 
-    this.action();
+    this.checkEverything();
   }
 
   tileDown(): void {
@@ -91,25 +93,25 @@ export class Game {
         cells[x][y] = cellCol[x];
       }
     }
-    this.action();
+    this.checkEverything();
   }
 
-  rangeTilesLeft(): void {
-    const cells = this.grid.cells,
-      size = this.grid.size;
+  tileLeft(): void {
+    const cells = this.grid.cells;
+    const size = this.grid.size;
     for (let x = 0; x < size; x++) {
       cells[x] = this.rowVal(cells[x]);
     }
-    this.action();
+    this.checkEverything();
   }
 
-  tileVal(): void {
-    const cells = this.grid.cells,
-      size = this.grid.size;
+  tileRight(): void {
+    const cells = this.grid.cells;
+    const size = this.grid.size;
     for (let x = 0; x < size; x++) {
       cells[x] = this.rowVal(cells[x].reverse()).reverse();
     }
-    this.action();
+    this.checkEverything();
   }
 
   // Draw the info board
@@ -124,6 +126,7 @@ export class Game {
       colWidths: [21, 21],
     });
     table.push(...board);
+
     return table.toString();
   }
 
@@ -185,7 +188,7 @@ export class Game {
   }
 
   // Action that is done on every keypress
-  action(): void {
+  checkEverything(): void {
     if (this.hasChange) {
       this.randomNumberGenerator();
       this.changeStepCount();
